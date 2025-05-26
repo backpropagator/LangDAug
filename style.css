@@ -1,0 +1,112 @@
+/* General Body Styling */
+body {
+  font-family: 'Noto Sans', 'Google Sans', 'Castoro', sans-serif;
+  color: #363636; /* Bulma's default text color */
+  line-height: 1.6;
+  background-color: #fdfdfd;
+}
+
+/* Typography */
+#project-title {
+  font-size: 2.5rem; /* Slightly larger than Bulma's title is-1 if needed */
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  color: #222; /* Darker title color */
+}
+
+.publication-authors {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.publication-authors .author-block {
+  margin-right: 0.5em;
+}
+
+.section .title.is-3, .section .title.is-4 {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dbdbdb; /* Light gray border */
+  color: #363636;
+}
+
+.content h4 {
+    font-size: 1.25rem; /* Bulma's title is-4 is 1.25rem */
+    margin-top: 1.5em; /* Space above sub-subheadings like in Results */
+    margin-bottom: 0.75em;
+}
+
+/* Sections */
+.section {
+  padding: 2rem 1.5rem; /* Slightly less vertical padding than Bulma default 3rem */
+}
+
+/* Links */
+a {
+  color: #3273dc; /* Bulma's default link color */
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #222; /* Darker on hover */
+}
+
+.buttons .button {
+  margin-bottom: 0.5rem;
+}
+
+/* Teaser Image */
+#teaser-image-placeholder {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin-bottom: 1rem; /* Added some space below teaser */
+}
+
+/* BibTeX Block */
+#bibtex-placeholder pre {
+  background-color: #f5f5f5; /* Light grey background */
+  padding: 1.5em;
+  border-radius: 4px;
+  overflow-x: auto; /* Allow horizontal scrolling for long lines */
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 0.9em;
+  white-space: pre-wrap; /* Wrap long lines */
+  word-break: break-all; /* Break words if necessary to prevent overflow */
+}
+
+/* Content paragraphs and lists for better readability */
+.content p, .content ul, .content ol {
+  margin-bottom: 1em;
+}
+
+.content ul, .content ol {
+    margin-left: 2em;
+}
+
+/* Footer */
+.footer {
+  background-color: #f5f5f5;
+  padding: 2rem 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Navbar - basic to ensure it's not broken */
+.navbar {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+/* Tables - ensure they look good in context */
+.table {
+    margin-bottom: 1.5em; /* Space below tables */
+}
+
+.table th {
+    font-weight: 600; /* Bolder table headers */
+}
+
+/* Ensure academicons/font awesome icons are aligned if used in links */
+.button .icon .ai,
+.button .icon .fab,
+.button .icon .fas {
+    vertical-align: middle;
+}
