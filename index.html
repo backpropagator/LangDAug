@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LangDAug: Langevin Data Augmentation for Multi-Source Domain Generalization in Medical Image Segmentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <span class="title is-5">LangDAug</span>
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="#abstract">Abstract</a>
+                    <a class="navbar-item" href="#results">Results</a>
+                    <a class="navbar-item" href="#methodology">Methodology</a>
+                    <a class="navbar-item" href="#publication">Publication</a>
+                    <a class="navbar-item" href="#bibtex">BibTeX</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Title -->
+    <section class="section">
+        <div class="container has-text-centered">
+            <h1 class="title is-1">
+                LangDAug: Langevin Data Augmentation for Multi-Source Domain Generalization in Medical Image Segmentation
+            </h1>
+        </div>
+    </section>
+
+    <!-- Authors and Affiliations -->
+    <section class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h2 class="title is-4">Authors and Affiliations</h2>
+                <p>Authors and Affiliations Placeholder</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publication Links -->
+    <section class="section" id="publication">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h2 class="title is-4">Publication Links</h2>
+                <div class="buttons is-centered">
+                    <a class="button is-link is-outlined" href="#" id="paper-link">
+                        <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                        <span>Paper</span>
+                    </a>
+                    <a class="button is-link is-outlined" href="#" id="arxiv-link">
+                        <span class="icon"><i class="fas fa-archive"></i></span>
+                        <span>arXiv</span>
+                    </a>
+                    <a class="button is-dark is-outlined" href="#" id="code-link">
+                        <span class="icon"><i class="fab fa-github"></i></span>
+                        <span>Code</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaser -->
+    <section class="section" id="teaser">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h2 class="title is-4">Teaser</h2>
+                <p>Teaser Image Placeholder</p>
+                <!-- Example: <img src="./teaser.jpg" alt="LangDAug Teaser" style="max-width: 800px; margin-top: 20px;"> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="section" id="abstract">
+        <div class="container">
+            <div class="content">
+                <h2 class="title is-3 has-text-centered">Abstract</h2>
+                <p>Abstract Placeholder: Detailed description of LangDAug, its objectives, methods, and key findings in the context of multi-source domain generalization for medical image segmentation. This section will summarize the core contributions of the paper.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section" id="results">
+        <div class="container">
+            <div class="content">
+                <h2 class="title is-3 has-text-centered">Results</h2>
+                <p>Results Placeholder: This section will showcase the performance of LangDAug, potentially including comparison tables, figures illustrating segmentation improvements, and quantitative metrics on various datasets (e.g., Fundus, Prostate MRI).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section" id="methodology">
+        <div class="container">
+            <div class="content">
+                <h2 class="title is-3 has-text-centered">Methodology</h2>
+                <p>Methodology Placeholder: A detailed explanation of the LangDAug framework. This will cover EBM training for domain traversal, Langevin sampling for generating intermediate domain samples, and how these augmented samples are used to train segmentation models. Diagrams and conceptual figures will be included here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX -->
+    <section class="section" id="bibtex">
+        <div class="container">
+            <div class="content">
+                <h2 class="title is-3 has-text-centered">BibTeX</h2>
+                <pre><code>BibTeX Entry Placeholder:
+@inproceedings{tiwary2025langdaug,
+  title={LangDAug: Langevin Data Augmentation for Multi-Source Domain Generalization in Medical Image Segmentation},
+  author={Tiwary, Piyush and Bhattacharyya, Kinjawl and Prathosh, A.P.},
+  booktitle={Proceedings of the 42nd International Conference on Machine Learning},
+  year={2025}
+}
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    Website template inspired by <a href="https://nerfies.github.io/" target="_blank">nerfies.github.io</a>.
+                </p>
+                <p>
+                    LangDAug Project Page.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar burger toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
