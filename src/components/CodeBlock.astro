@@ -1,0 +1,43 @@
+---
+
+---
+
+<div class="px-6 w-full">
+  <div class="relative">
+    <pre class="relative flex flex-col whitespace-pre overflow-auto bg-zinc-300 p-4 pr-12 rounded-lg w-full"><slot /></pre>
+    <button 
+      class="absolute top-2 right-2 p-2 bg-zinc-500 hover:bg-zinc-600 text-white rounded transition-colors"
+      onclick="copyCode(this)"
+      title="Copy to clipboard"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+        <path d="M5 15V5a2 2 0 0 1 2-2h8"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  function copyCode(button) {
+    const parent = button.parentElement;
+    if (!parent) return;
+    const pre = parent.querySelector('pre');
+    if (!pre) return;
+    const text = pre.textContent || pre.innerText;
+    
+    navigator.clipboard.writeText(text).then(() => {
+      // Visual feedback
+      const originalHTML = button.innerHTML;
+      button.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20,6 9,17 4,12"></polyline>
+        </svg>
+      `;
+      
+      setTimeout(() => {
+        button.innerHTML = originalHTML;
+      }, 2000);
+    });
+  }
+</script>

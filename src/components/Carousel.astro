@@ -1,0 +1,24 @@
+---
+import { SimpleCarousel } from './SimpleCarousel';
+
+interface CarouselItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  images: CarouselItem[];
+  className?: string;
+}
+
+const { images, className = "" } = Astro.props;
+---
+
+<div class="w-full">
+  <SimpleCarousel 
+    client:load 
+    images={images} 
+    className={className}
+  />
+</div>

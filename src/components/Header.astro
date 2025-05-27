@@ -1,0 +1,41 @@
+---
+import type { Author, Note, Link } from "../types/types";
+import Links from "./Links.astro";
+import Authors from "./Authors.astro";
+import Notes from "./Notes.astro";
+
+interface Affiliation {
+  symbol: string;
+  text: string;
+}
+
+interface Props {
+  title: string;
+  authors: Author[];
+  conference?: string;
+  notes?: Note[];
+  links: Link[];
+  affiliations?: Affiliation[];
+}
+
+const { title, authors, conference, notes, links, affiliations } = Astro.props as Props;
+---
+
+<header class="flex flex-col gap-10 items-center mb-6">
+  <h1>{title}</h1>
+  <div class="flex flex-col gap-6 items-center">
+    <Authors authors={authors} />
+    {affiliations && affiliations.length > 0 && (
+      <div class="flex flex-col items-center gap-1 mt-2">
+        {affiliations.map((affil) => (
+          <div class="text-base md:text-lg font-medium text-center text-zinc-700">
+            <sup class="text-base md:text-lg align-super">{affil.symbol}</sup> {affil.text}
+          </div>
+        ))}
+      </div>
+    )}
+    {conference && <p class="text-center">{conference}</p>}
+    {notes && <Notes notes={notes} />}
+    {links && <Links links={links} />}
+  </div>
+</header>

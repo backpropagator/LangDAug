@@ -1,0 +1,277 @@
+---
+layout: ../layouts/Layout.astro
+title: "LangDAug: Langevin Data Augmentation for Multi-Source Domain Generalization in Medical Image Segmentation"
+description: Simple project page template for your research paper, built with Astro and Tailwind CSS
+thumbnail: screenshot_langdaug.png
+---
+
+import Header from "../components/Header.astro";
+import Video from "../components/Video.astro";
+import HighlightedSection from "../components/HighlightedSection.astro";
+import SmallCaps from "../components/SmallCaps.astro";
+import Figure from "../components/Figure.astro";
+import Image from "../components/Image.astro";
+import TwoColumns from "../components/TwoColumns.astro";
+import YouTubeVideo from "../components/YouTubeVideo.astro";
+import LaTeX from "../components/LaTeX.astro";
+import Carousel from "../components/Carousel.astro";
+
+import { ImageComparison } from "../components/ImageComparison.tsx";
+
+import Splat from "../components/Splat.tsx"
+import langdaug_refined_horizontal from "../assets/langdaug_refined_horizontal.jpg";
+import fundus_A from "../assets/A2D_fundus.jpg"
+import fundus_B from "../assets/B2D_fundus.jpg"
+import fundus_C from "../assets/C2B_fundus.jpg"
+import fundus_D from "../assets/D2A_fundus.jpg"
+import prostate_A from "../assets/A2B_prostate.jpg"
+import prostate_B from "../assets/B2F_prostate.jpg"
+import prostate_C from "../assets/C2A_prostate.jpg"
+import prostate_D from "../assets/D2F_prostate.jpg"
+import prostate_E from "../assets/E2B_prostate.jpg"
+import prostate_F from "../assets/F2A_prostate.jpg"
+
+
+import CodeBlock from "../components/CodeBlock.astro";
+import Table from "../components/Table.astro";
+export const components = {pre: CodeBlock, table: Table}
+
+<Header
+  title={frontmatter.title}
+  authors={[
+    {
+      name: "Piyush Tiwary",
+      url: "https://backpropagator.github.io/",
+      notes: ["†"],
+    },
+    {
+      name: "Kinjawl Bhattacharyya",
+      url: "https://kb107.github.io/",
+      notes: ["†"],
+    },
+    {
+      name: "Prathosh A.P.",
+      url: "https://sites.google.com/view/prathosh/home",
+      notes: ["†"],
+    },
+  ]}
+  affiliations={[
+    { 
+      symbol: "†", 
+      text: "Indian Institute of Science, Bangalore" 
+    },
+  ]}
+  conference="ICML 2025"
+  links={[
+    {
+      name: "Paper",
+      url: "https://www.arxiv.org/pdf/2505.19659",
+      icon: "ri:file-pdf-2-line",
+    },
+    {
+      name: "Code",
+      url: "https://github.com/backpropagator/LangDAug",
+      icon: "ri:github-line",
+    },
+    {
+      name: "arXiv",
+      url: "https://www.arxiv.org/abs/2505.19659#",
+      icon: "academicons:arxiv",
+    },
+  ]}
+  />
+
+<Figure>
+  <Image slot="figure" source={langdaug_refined_horizontal} altText="Overview of our proposed LangDAug method." />
+  <span slot="caption">Overview of our proposed LangDAug method.</span>
+</Figure>
+
+<HighlightedSection>
+
+## Abstract
+
+**LangDAug** is a Langevin-based data augmentation method for improving domain generalization in 2D medical image segmentation. It leverages **Energy-Based Models (EBMs)** trained via contrastive divergence to generate intermediate samples that bridge source domains using **Langevin Dynamics**. These samples act as natural augmentations, improving generalization to unseen domains.
+
+We show that LangDAug provides a regularizing effect, theoretically bounding model complexity by the **intrinsic dimensionality** of the data manifold. Empirically, it outperforms state-of-the-art methods on retinal fundus and prostate MRI segmentation tasks, and complements domain-randomization strategies effectively.
+
+</HighlightedSection>
+
+{/* ## Image comparison slider
+
+An interactive, accessible slider component with keyboard navigation.
+<Figure>
+  <ImageComparison slot="figure" client:load imageUrlOne={dogsDiffc.src} imageUrlTwo={dogsTrue.src} altTextOne="Photo of two dogs running side-by-side in shallow water, lossily compressed using the DiffC algorithm" altTextTwo="Original photo of two dogs running side-by-side in shallow water" />
+  <span slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the <a href="https://jeremyiv.github.io/diffc-project-page/">DiffC algorithm</a>.</span>
+</Figure>
+
+## Two columns
+
+Use the two columns component to display two columns of content. In this example, the first column contains a figure with a YouTube video and the second column contains a figure with a custom [React](https://react.dev/) component. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
+
+<TwoColumns>
+  <Figure slot="left">
+    <YouTubeVideo slot="figure" videoId="wjZofJX0v4M" />
+    <span slot="caption">Take a look at this YouTube video.</span>
+  </Figure>
+  <Figure slot="right">
+    <Splat slot="figure" client:idle />
+    <span slot="caption">Now look at this <a href="https://en.wikipedia.org/wiki/Gaussian_splatting">Gaussian splat</a>, rendered with a React component.</span>
+  </Figure>
+</TwoColumns>
+ */}
+
+## Methodology
+
+{/* LangDAug is a novel **Langevin-based data augmentation technique** for **multi-source domain generalization** in 2D medical image segmentation. The core idea is to generate _intermediate samples_ that act as bridges between source domains by leveraging **Energy-Based Models (EBMs)** trained via **Contrastive Divergence (CD)** and **Langevin Dynamics (LD)**. These bridge samples improve the generalization ability of segmentation models to unseen domains. */}
+
+### Problem Setup
+
+Given multiple source domains <LaTeX inline formula="\{D_i\}_{i=1}^n" />, each associated with a distribution <LaTeX inline formula="P_{D_i}(x, y)" /> over the input-output space <LaTeX inline formula="\mathcal{X} \times \mathcal{Y}" />, the standard Empirical Risk Minimization (ERM) objective seeks to find model parameters <LaTeX inline formula="\hat{\theta}" /> that minimize the average loss over all training samples:
+
+<LaTeX formula="\hat{\theta} = \arg\min_{\theta} \frac{1}{N} \sum_{i=1}^{N} \ell(f_\theta(x_i), y_i)" />
+
+where <LaTeX inline formula="N = \sum_{i=1}^n |D_i|" /> denotes the total number of training samples aggregated from all source domains. However, ERM often fails to generalize to an unseen target domain <LaTeX inline formula="D_{n+1} \notin \{D_i\}_{i=1}^n" />, as it only optimizes performance over the observed source domains.
+
+### Inter-Domain Traversal with EBMs
+
+To bridge domains, we train an EBM <LaTeX inline formula="E_{\theta_{ij}}" /> to model the energy between domain pairs <LaTeX inline formula="(D_i, D_j)" />. The model is trained using <strong>Contrastive Divergence</strong>:
+
+<LaTeX formula="\nabla_{\theta_{ij}} \mathcal{L}_{CD} = \mathbb{E}_{x \sim P_{D_j}}[\nabla_{\theta_{ij}} E_{\theta_{ij}}(x)] - \mathbb{E}_{x \sim P_{\theta_{ij}}}[\nabla_{\theta_{ij}} E_{\theta_{ij}}(x)]" />
+
+<LaTeX formula="P_{\theta_{ij}} = \frac{\exp(-E_{\theta_{ij}}(x))}{Z_{\theta_{ij}}}, \quad \text{where } Z_{\theta_{ij}} = \int_{\mathcal{X}} \exp(-E_{\theta_{ij}}(x)) \, dx" />
+
+Sampling from <LaTeX inline formula="P_{\theta_{ij}}" /> is done using <strong>Langevin Dynamics</strong> with the chain being initialized at a point <LaTeX inline formula="x_0 \sim P_{D_i}" />:
+
+<LaTeX formula="x_{t+1} = x_t - \frac{\alpha^2}{2} \nabla_x E_{\theta_{ij}}(x_t) + \alpha \epsilon, \quad \epsilon \sim \mathcal{N}(0, I)" />
+
+These LD iterates form samples that interpolate between domains.
+
+### Langevin Data Augmentation
+
+We use the <strong>intermediate LD samples</strong> as augmentation data. For each sample <LaTeX inline formula="x_j \in D_i" />, LD is run for <LaTeX inline formula="K" /> steps to generate <LaTeX inline formula="\{x_j^t\}_{t=1}^K" />:
+
+<LaTeX formula="x_{j}^{t+1} = x_j^t - \frac{\beta^2}{2} \nabla_x E_{\theta_{ij}}(x_j^t) + \beta \epsilon" />
+
+These samples, combined with original labels <LaTeX inline formula="y_j" />, are used in ERM training, effectively expanding the domain support:
+
+<LaTeX formula="\mathcal{D}_{\text{aug}} = \bigcup_{i \neq j, k} D_{ij}^k, \quad \text{where } D_{ij}^k = \{(x_j^k, y_j)\}" />
+
+### Theoretical Insights
+
+LangDAug acts as a <strong>regularizer</strong> on the ERM objective. Let <LaTeX inline formula="\tilde{x}_i" /> be the Langevin-perturbed sample. Then the augmented empirical risk is:
+
+<LaTeX formula="\mathcal{L}_{\text{aug}}(\theta, \mathcal{D}) = \frac{1}{k} \sum_{i=1}^k \mathbb{E}_{\epsilon \sim \mathcal{N}(0, I)} [\ell(\theta, \tilde{z}_i)]" />
+
+This can be decomposed as:
+
+<LaTeX formula="\mathcal{L}_{\text{aug}} = \mathcal{L}_{\text{std}} + R_1 + R_2 + R_3" />
+
+Where <LaTeX inline formula="R_1, R_2, R_3" /> are regularization terms involving the first and second derivatives of the model <LaTeX inline formula="f_\theta" />, encouraging <strong>smoother</strong> and <strong>flatter</strong> solutions.
+
+## Cross-domain generalization performance
+
+### Retinal Fundus Segmentation
+
+| Method | Domain A | Domain B | Domain C | Domain D | Avg mIoU | Avg mDSC |
+|:--------|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
+| Hutchinson | 66.73 | 66.73 | 69.36 | 66.73 | 67.39 | 78.14 |
+| MixStyle | 80.76 | 67.69 | 79.79 | 77.09 | 76.33 | 85.58 |
+| FedDG | 76.65 | 72.14 | 76.10 | 75.96 | 75.21 | 83.67 |
+| RAM | 77.42 | 73.79 | 79.66 | 78.74 | 77.40 | 85.39 |
+| TriD | 80.92 | 72.45 | 79.34 | 78.96 | 77.92 | 85.95 |
+| **LangDAug (Ours)** | **78.79** | **75.05** | **81.01** | **80.51** | **78.84** | **87.61** |
+
+### Prostate MRI Segmentation
+
+| Method | <small>Domain A</small> | <small>Domain B</small> | <small>Domain C</small> | <small>Domain D</small> | <small>Domain E</small> | <small>Domain F</small> | <small>Avg ASD</small> | <small>Avg DSC</small> |
+|:--------|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|:---------:|
+| Hutchinson | 3.28 | 1.48 | 2.07 | 3.98 | 2.78 | 1.64 | 2.54 | 78.62 |
+| MixStyle | 0.72 | 0.88 | 1.62 | 0.65 | 1.59 | 0.51 | 1.00 | 86.27 |
+| FedDG | 1.09 | 0.93 | 1.31 | 0.88 | 1.73 | 0.50 | 1.07 | 85.95 |
+| RAM | 0.93 | 0.98 | 1.26 | 0.74 | 1.78 | 0.32 | 1.00 | 87.02 |
+| TriD | 0.70 | 0.72 | 1.39 | 0.71 | 1.43 | 0.46 | 0.90 | 87.68 |
+| **LangDAug (Ours)** | **0.58** | **0.64** | **1.21** | **0.57** | **1.49** | **0.38** | **0.81** | **89.16** |
+
+## Inter-Domain Traversal Examples
+
+### Retinal Fundus Dataset
+<Figure>
+  <Carousel 
+    slot="figure"
+    images={[
+      {
+        src: fundus_A.src,
+        alt: "Source domain A",
+        caption: "Domain A to Domain D"
+      },
+      {
+        src: fundus_B.src,
+        alt: "Source domain B",
+        caption: "Domain B to Domain D"
+      },
+      {
+        src: fundus_C.src,
+        alt: "Source domain C",
+        caption: "Domain C to Domain B"
+      },
+      {
+        src: fundus_D.src,
+        alt: "Source domain D",
+        caption: "Domain D to Domain A"
+      }
+    ]}
+  />
+</Figure>
+
+### Prostate MRI Dataset
+
+<Figure>
+  <Carousel 
+    slot="figure"
+    images={[
+      {
+        src: prostate_A.src,
+        alt: "Source domain A",
+        caption: "Domain A to Domain B"
+      },
+      {
+        src: prostate_B.src,
+        alt: "Source domain B",
+        caption: "Domain B to Domain F"
+      },
+      {
+        src: prostate_C.src,
+        alt: "Source domain C",
+        caption: "Domain C to Domain A"
+      },
+      {
+        src: prostate_D.src,
+        alt: "Source domain D",
+        caption: "Domain D to Domain F"
+      },
+      {
+        src: prostate_E.src,
+        alt: "Source domain E",
+        caption: "Domain E to Domain B"
+      },
+      {
+        src: prostate_F.src,
+        alt: "Source domain F",
+        caption: "Domain F to Domain A"
+      }
+    ]}
+  />
+</Figure>
+
+## BibTeX citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@inproceedings{tiwary2025langdaug,
+  title={LangDAug: Langevin Data Augmentation for Multi-Source Domain Generalization in Medical Image Segmentation},
+  author={Tiwary, Piyush and Bhattacharyya, Kinjawl and Prathosh, A.P.},
+  booktitle={Proceedings of the 42nd International Conference on Machine Learning},
+  year={2025}
+}
+```
